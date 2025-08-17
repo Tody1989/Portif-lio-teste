@@ -1,147 +1,329 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio - Felipe Ribeiro</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
-    }
-
-    body {
-      background: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background: #222;
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #bbb;
-    }
-
-    nav {
-      background: #444;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #1abc9c;
-    }
-
-    section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2rem;
-      color: #222;
-    }
-
-    .card {
-      background: #fff;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      color: #1abc9c;
-    }
-
-    footer {
-      background: #222;
-      color: #bbb;
-      text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-    }
-
-    footer a {
-      color: #1abc9c;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe Ribeiro - Desenvolvedor Júnior Java</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .skill-bar { transition: width 1s ease-in-out; }
+        .typing-animation { 
+            border-right: 2px solid #667eea; 
+            animation: blink 1s infinite; 
+        }
+        @keyframes blink { 0%, 50% { border-color: transparent; } 51%, 100% { border-color: #667eea; } }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
-<body>
+<body class="bg-gray-500">
+  
+    <nav class="fixed top-0 w-full bg-white backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl md:text-3xl font-bold mb-4 flex items-center justify-center">
+                  Felipe Ribeiro
+                <img src="cafe.gif" alt="Java" class="w-15 h-15 ml-3">
+                 </h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors">Início</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">Sobre</a>
+                    <a href="#skills" class="text-gray-600 hover:text-blue-600 transition-colors">Habilidades</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contato</a>
+                </div>
+                <button id="mobile-menu" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-  <header>
-    <h1>Felipe Ribeiro</h1>
-    <p>Estudante de Análise de Sistemas | Desenvolvedor Java</p>
-  </header>
+    <!-- Menu -->
+    <div id="mobile-nav" class="fixed top-0 left-0 w-full h-full bg-white z-40 transform -translate-x-full transition-transform duration-300 md:hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-10 bg-gradient-to-b from-blue-600 via-purple-600 to-pink-600">
+    <a href="#home" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Início</a>
+    <a href="#about" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Sobre</a>
+    <a href="#skills" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Habilidades</a>
+    <a href="#contact" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Contato</a>
+</div>
 
-  <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#contato">Contato</a>
-  </nav>
-
-  <section id="sobre">
-    <h2>Sobre mim</h2>
-    <div class="card">
-      <p>Sou apaixonado por tecnologia e estou estudando análise de sistemas, engenharia de requisitos e desenvolvimento de software. 
-         Busco sempre aprender novas ferramentas e melhorar meus projetos.</p>
     </div>
-  </section>
 
-  <section id="projetos">
-    <h2>Projetos</h2>
-    <div class="card">
-      <h3>📌 Sistema de Gastos Mensais</h3>
-      <p>Aplicação em Java que calcula despesas mensais com transporte e alimentação, considerando dias trabalhados e folgas.</p>
+ <section id="home" class="relative h-screen">
+   
+    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <div class="absolute top-0 left-0 w-full h-full bg-black/40 -z-10"></div>
+
+   
+    <div class="flex flex-col items-center justify-center h-full text-center text-white px-4">
+        <h1 class="text-5xl md:text-6xl font-bold mb-4"></h1>
+        <p class="text-xl md:text-2xl mb-8 typing-animation" id="typing-text"></p>
+        <div class="flex space-x-6">
+          
+        
+        </div>
     </div>
-    <div class="card">
-      <h3>📌 Organização de Cultos</h3>
-      <p>Sistema para igrejas, com cadastro de visitantes, aniversariantes, escalas e leituras via tablet.</p>
+</section>
+<!-- About Section -->
+<section id="about" class="bg-[#058dd9] flex items-center justify-center min-h-screen px-4">
+    <div class="max-w-4xl text-center fade-in">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Sobre Mim</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto mb-8"></div>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Apaixonado por tecnologia</h3>
+        <p class="text-gray-100 mb-6 leading-relaxed">
+          Já trabalhei como técnico de computadores e suporte ao cliente, isso despertou em mim o desejo de seguir na área de sistesmas.
+          Sou recém formado em Gestão da Tecnologia da Informação, fiz varios cursos pela Udemy voltados a linguagem JAVA.
+        
+        </p>
+        <p class="text-gray-100 mb-8 leading-relaxed">
+            
+            Recentemente estou desenvolvendo um sistema para controle financeiro pessoal, permitindo o registro de despesas e receitas, categorização de gastos e cálculo automático do total mensal. 
+            Facilita a visualização dos gastos e auxilia na tomada de decisões financeiras.
+        </p>
+
+        <p class="text-gray-100 mb-8 leading-relaxed">
+
+             Já desenvolvi um APP com intuito de diminuir o desperdício de matéria-prima no ramo da construção civil.
+        </p>
     </div>
-  </section>
+</section>
 
-  <section id="contato">
-    <h2>Contato</h2>
-    <div class="card">
-      <p>📧 Email: <a href="https://mail.google.com/mail/u/0/#inbox">felipeti1989@gmail.com</a></p>
-      <p>💼 LinkedIn: <a href="https://linkedin.com/in/seulink" target="_blank">https://www.linkedin.com/in/felipe-ribeiro-6a737129b/k</a></p>
-      <p>🐙 GitHub: <a href="https://github.com/seuusuario" target="_blank">github.com/seuusuario</a></p>
-    </div>
-  </section>
 
-  <footer>
-    <p>© 2025 - Felipe Ribeiro | Feito com ❤️ em HTML & CSS</p>
-  </footer>
 
-</body>
+    <!-- Habilidades -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Habilidades</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+                    <div class="text-center mb-4">
+                        <h3 class="text-xl font-semibold">JavaScript</h3>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-yellow-500 h-2 rounded-full skill-bar" data-width="90%" style="width: 0%"></div>
+                    </div>
+                    <div class="text-center text-gray-600">70%</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+                    <div class="text-center mb-4">
+                       
+                      
+                        <h3 class="text-xl font-semibold">React</h3>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-blue-500 h-2 rounded-full skill-bar" data-width="85%" style="width: 0%"></div>
+                    </div>
+                    <div class="text-center text-gray-600">70%</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+                    <div class="text-center mb-4">
+                        
+                      
+                        <h3 class="text-xl font-semibold">Node.js</h3>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-green-500 h-2 rounded-full skill-bar" data-width="80%" style="width: 0%"></div>
+                    </div>
+                    <div class="text-center text-gray-600">70%</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+                    <div class="text-center mb-4">
+                       
+                        <h3 class="text-xl font-semibold">Python</h3>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-blue-600 h-2 rounded-full skill-bar" data-width="75%" style="width: 0%"></div>
+                    </div>
+                    <div class="text-center text-gray-600">75%</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+                    <div class="text-center mb-4">
+                
+                        <h3 class="text-xl font-semibold">Banco de Dados</h3>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-gray-600 h-2 rounded-full skill-bar" data-width="85%" style="width: 0%"></div>
+                    </div>
+                    <div class="text-center text-gray-600">85%</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+                    <div class="text-center mb-4">
+                       
+                        <h3 class="text-xl font-semibold">JAVA</h3>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-orange-500 h-2 rounded-full skill-bar" data-width="70%" style="width: 0%"></div>
+                    </div>
+                    <div class="text-center text-gray-600">70%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sessão de contato -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Entre em Contato</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-600">Vamos conversar !</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold mb-6">Informações de Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-blue-600 text-xl w-8"></i>
+                            <span class="text-gray-600">felipeti1989@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-blue-600 text-xl w-8"></i>
+                            <span class="text-gray-600">+55 (41) 99858-7244</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-600 text-xl w-8"></i>
+                            <span class="text-gray-600">Curitiba, PR - Brasil</span>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="text-lg font-semibold mb-4">Redes Sociais</h4>
+                        <div class="flex space-x-4">
+
+                            <a href="https://www.linkedin.com/in/felipe-ribeiro-6a737129b/" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                              <i class="fab fa-linkedin"></i>
+                             </a>
+                             <a href="https://github.com/Tody1989" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors">
+                             <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2025 Felipe Ribeiro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileNav.classList.toggle('-translate-x-full');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.add('-translate-x-full');
+            });
+        });
+
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        
+        const typingText = document.getElementById('typing-text');
+        const texts = ['Seja Bem Vindo !'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+
+            setTimeout(typeWriter, isDeleting ? 50 : 100);
+        }
+
+        typeWriter();
+
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 500);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillObserver.observe(skillsSection);
+        }
+
+       
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pela mensagem! Este é um portfólio demo - o formulário não envia emails reais.');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9704a40e9580f219',t:'MTc1NTM4NjIwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
