@@ -1,329 +1,465 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe Ribeiro - Desenvolvedor Júnior Java</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .skill-bar { transition: width 1s ease-in-out; }
-        .typing-animation { 
-            border-right: 2px solid #667eea; 
-            animation: blink 1s infinite; 
-        }
-        @keyframes blink { 0%, 50% { border-color: transparent; } 51%, 100% { border-color: #667eea; } }
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felipe Ribeiro - Desenvolvedor Júnior</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  body { font-family: 'Inter', sans-serif; }
+  .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+  .skill-bar { transition: width 1s ease-in-out; }
+  .typing-animation { border-right: 2px solid #667eea; animation: blink 1s infinite; }
+  @keyframes blink { 0%,50% { border-color: transparent; } 51%,100% { border-color: #667eea; } }
+  .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  #gameCanvas { background: #f0f0f0; display:block; margin: 0 auto; border:1px solid #333; }
+</style>
 </head>
-<body class="bg-gray-500">
-  
-    <nav class="fixed top-0 w-full bg-white backdrop-blur-sm shadow-sm z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <h1 class="text-3xl md:text-3xl font-bold mb-4 flex items-center justify-center">
-                  Felipe Ribeiro
-                <img src="cafe.gif" alt="Java" class="w-15 h-15 ml-3">
-                 </h1>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors">Início</a>
-                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">Sobre</a>
-                    <a href="#skills" class="text-gray-600 hover:text-blue-600 transition-colors">Habilidades</a>
-                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contato</a>
-                </div>
-                <button id="mobile-menu" class="md:hidden text-gray-600">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+<body class="bg-gray-100">
 
-    <!-- Menu -->
-    <div id="mobile-nav" class="fixed top-0 left-0 w-full h-full bg-white z-40 transform -translate-x-full transition-transform duration-300 md:hidden">
-        <div class="flex flex-col items-center justify-center h-full space-y-10 bg-gradient-to-b from-blue-600 via-purple-600 to-pink-600">
-    <a href="#home" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Início</a>
-    <a href="#about" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Sobre</a>
-    <a href="#skills" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Habilidades</a>
-    <a href="#contact" class="text-3xl font-bold text-white hover:text-yellow-300 transition-all duration-300 mobile-link">Contato</a>
+
+<nav class="fixed top-0 w-full bg-white backdrop-blur-sm shadow-sm z-50">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+    <h1 class="text-2xl font-bold flex items-center">
+      Felipe Ribeiro
+      <img src="cafe.gif" alt="Java" class="w-10 h-10 ml-2">
+    </h1>
+    <div class="hidden md:flex space-x-8">
+      <a href="#home" class="text-gray-600 hover:text-blue-600">Início</a>
+      <a href="#about" class="text-gray-600 hover:text-blue-600">Sobre</a>
+      <a href="#skills" class="text-gray-600 hover:text-blue-600">Habilidades</a>
+      <a href="#contact" class="text-gray-600 hover:text-blue-600">Contato</a>
+      <a href="#game" class="text-gray-600 hover:text-blue-600">Jogo</a>
+    </div>
+    <button id="mobile-menu" class="md:hidden text-gray-600">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  </div>
+</nav>
+
+
+<div id="btc-container" style="position:fixed; top:20px; right:20px; text-align:center; cursor:pointer; z-index:60;">
+  <img id="btc-icon" src="bitcoin.png" alt="Bitcoin animado" style="width:30px; height:30px;">
+  <div id="btc-price" style="margin-top:5px; background:white; padding:5px 10px; border-radius:5px; box-shadow:0 2px 10px rgba(0,0,0,0.2); font-weight:bold; display:none;">
+    Cotação atual...
+  </div>
 </div>
 
-    </div>
 
- <section id="home" class="relative h-screen">
-   
-    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10">
-        <source src="video.mp4" type="video/mp4">
-    </video>
-    <div class="absolute top-0 left-0 w-full h-full bg-black/40 -z-10"></div>
-
-   
-    <div class="flex flex-col items-center justify-center h-full text-center text-white px-4">
-        <h1 class="text-5xl md:text-6xl font-bold mb-4"></h1>
-        <p class="text-xl md:text-2xl mb-8 typing-animation" id="typing-text"></p>
-        <div class="flex space-x-6">
-          
-        
-        </div>
-    </div>
+<section id="home" class="relative h-screen">
+  <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10">
+    <source src="video.mp4" type="video/mp4">
+  </video>
+  <div class="absolute top-0 left-0 w-full h-full bg-black/40 -z-10"></div>
+  <div class="flex flex-col items-center justify-center h-full text-center text-white px-4">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4"></h1>
+    <p class="text-xl md:text-2xl mb-8 typing-animation" id="typing-text"></p>
+  </div>
 </section>
+
 
 <section id="about" class="bg-[#058dd9] flex items-center justify-center min-h-screen px-4">
-    <div class="max-w-4xl text-center fade-in">
-        <h2 class="text-4xl font-bold text-gray-800 mb-4">Sobre Mim</h2>
-        <div class="w-20 h-1 bg-blue-600 mx-auto mb-8"></div>
-        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Apaixonado por tecnologia</h3>
-        <p class="text-gray-100 mb-6 leading-relaxed">
-          Já trabalhei como técnico de computadores e suporte ao cliente, isso despertou em mim o desejo de seguir na área de sistesmas.
-          Sou recém formado em Gestão da Tecnologia da Informação, fiz varios cursos pela Udemy voltados a linguagem JAVA.
-        
-        </p>
-        <p class="text-gray-100 mb-8 leading-relaxed">
-            
-            Recentemente estou desenvolvendo um sistema para controle financeiro pessoal, permitindo o registro de despesas e receitas, categorização de gastos e cálculo automático do total mensal. 
-            Facilita a visualização dos gastos e auxilia na tomada de decisões financeiras.
-        </p>
-
-        <p class="text-gray-100 mb-8 leading-relaxed">
-
-             Já desenvolvi um APP com intuito de diminuir o desperdício de matéria-prima no ramo da construção civil.
-        </p>
-    </div>
+  <div class="max-w-4xl text-center fade-in">
+    <img src="Gif.gif" alt="Ideias" class="w-40 h-40 mx-auto">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">Minha História</h2>
+    <div class="w-20 h-1 bg-blue-600 mx-auto mb-8"></div>
+    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Apaixonado por tecnologia</h3>
+    <p class="text-gray-100 mb-6 leading-relaxed">
+      Já trabalhei como técnico de computadores e suporte ao cliente, isso despertou em mim o desejo de seguir na área de sistemas. Sou recém formado em Gestão da Tecnologia da Informação e fiz vários cursos voltados à linguagem Java.
+    </p>
+    <p class="text-gray-100 mb-8 leading-relaxed">
+      Recentemente estou desenvolvendo um sistema para controle financeiro pessoal, permitindo o registro de despesas e receitas, categorização de gastos e cálculo automático do total mensal.
+    </p>
+    <p class="text-gray-100 mb-8 leading-relaxed">
+      Já desenvolvi um APP para reduzir o desperdício de matéria-prima na construção civil.
+    </p>
+  </div>
 </section>
 
 
+<section id="skills" class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Habilidades</h2>
+      <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+     
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+        <h3 class="text-xl font-semibold mb-2 text-center">JavaScript</h3>
+        <div class="bg-gray-200 rounded-full h-2 mb-2"><div class="bg-yellow-500 h-2 rounded-full skill-bar" data-width="90%" style="width:0%"></div></div>
+        <div class="text-center text-gray-600">70%</div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+        <h3 class="text-xl font-semibold mb-2 text-center">React</h3>
+        <div class="bg-gray-200 rounded-full h-2 mb-2"><div class="bg-blue-500 h-2 rounded-full skill-bar" data-width="85%" style="width:0%"></div></div>
+        <div class="text-center text-gray-600">70%</div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+        <h3 class="text-xl font-semibold mb-2 text-center">Node.js</h3>
+        <div class="bg-gray-200 rounded-full h-2 mb-2"><div class="bg-green-500 h-2 rounded-full skill-bar" data-width="80%" style="width:0%"></div></div>
+        <div class="text-center text-gray-600">70%</div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+        <h3 class="text-xl font-semibold mb-2 text-center">Python</h3>
+        <div class="bg-gray-200 rounded-full h-2 mb-2"><div class="bg-blue-600 h-2 rounded-full skill-bar" data-width="75%" style="width:0%"></div></div>
+        <div class="text-center text-gray-600">75%</div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+        <h3 class="text-xl font-semibold mb-2 text-center">Banco de Dados</h3>
+        <div class="bg-gray-200 rounded-full h-2 mb-2"><div class="bg-gray-600 h-2 rounded-full skill-bar" data-width="85%" style="width:0%"></div></div>
+        <div class="text-center text-gray-600">85%</div>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
+        <h3 class="text-xl font-semibold mb-2 text-center">JAVA</h3>
+        <div class="bg-gray-200 rounded-full h-2 mb-2"><div class="bg-orange-500 h-2 rounded-full skill-bar" data-width="70%" style="width:0%"></div></div>
+        <div class="text-center text-gray-600">70%</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    
-    <section id="skills" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Habilidades</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
-                    <div class="text-center mb-4">
-                        <h3 class="text-xl font-semibold">JavaScript</h3>
-                    </div>
-                    <div class="bg-gray-200 rounded-full h-2 mb-2">
-                        <div class="bg-yellow-500 h-2 rounded-full skill-bar" data-width="90%" style="width: 0%"></div>
-                    </div>
-                    <div class="text-center text-gray-600">70%</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
-                    <div class="text-center mb-4">
-                       
-                      
-                        <h3 class="text-xl font-semibold">React</h3>
-                    </div>
-                    <div class="bg-gray-200 rounded-full h-2 mb-2">
-                        <div class="bg-blue-500 h-2 rounded-full skill-bar" data-width="85%" style="width: 0%"></div>
-                    </div>
-                    <div class="text-center text-gray-600">70%</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
-                    <div class="text-center mb-4">
-                        
-                      
-                        <h3 class="text-xl font-semibold">Node.js</h3>
-                    </div>
-                    <div class="bg-gray-200 rounded-full h-2 mb-2">
-                        <div class="bg-green-500 h-2 rounded-full skill-bar" data-width="80%" style="width: 0%"></div>
-                    </div>
-                    <div class="text-center text-gray-600">70%</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
-                    <div class="text-center mb-4">
-                       
-                        <h3 class="text-xl font-semibold">Python</h3>
-                    </div>
-                    <div class="bg-gray-200 rounded-full h-2 mb-2">
-                        <div class="bg-blue-600 h-2 rounded-full skill-bar" data-width="75%" style="width: 0%"></div>
-                    </div>
-                    <div class="text-center text-gray-600">75%</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
-                    <div class="text-center mb-4">
-                
-                        <h3 class="text-xl font-semibold">Banco de Dados</h3>
-                    </div>
-                    <div class="bg-gray-200 rounded-full h-2 mb-2">
-                        <div class="bg-gray-600 h-2 rounded-full skill-bar" data-width="85%" style="width: 0%"></div>
-                    </div>
-                    <div class="text-center text-gray-600">85%</div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg card-hover fade-in">
-                    <div class="text-center mb-4">
-                       
-                        <h3 class="text-xl font-semibold">JAVA</h3>
-                    </div>
-                    <div class="bg-gray-200 rounded-full h-2 mb-2">
-                        <div class="bg-orange-500 h-2 rounded-full skill-bar" data-width="70%" style="width: 0%"></div>
-                    </div>
-                    <div class="text-center text-gray-600">70%</div>
-                </div>
-            </div>
+<section id="game" class="py-20 bg-blue-200">
+  <div id="game-container" 
+       style="position: relative; width: 900px; height: 600px; margin: auto; 
+              background: url('tiro.png') no-repeat center center; 
+              background-size: cover; 
+              border: 2px solid #333;
+              cursor: url('mira2.png') 20 20, crosshair;">
+              
+    <canvas id="gameCanvas" width="900" height="600" 
+            style="background: transparent;"></canvas>
+  </div>
+</section>
+
+<section id="contact" class="py-20 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Entre em Contato</h2>
+      <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+      <p class="text-gray-600">Vamos conversar!</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="fade-in">
+        <h3 class="text-2xl font-semibold mb-6">Informações de Contato</h3>
+        <div class="space-y-4">
+          <div class="flex items-center"><i class="fas fa-envelope text-blue-600 text-xl w-8"></i><span class="text-gray-600">felipeti1989@gmail.com</span></div>
+          <div class="flex items-center"><i class="fas fa-phone text-blue-600 text-xl w-8"></i><span class="text-gray-600">+55 (41) 99858-7244</span></div>
+          <div class="flex items-center"><i class="fas fa-map-marker-alt text-blue-600 text-xl w-8"></i><span class="text-gray-600">Curitiba, PR - Brasil</span></div>
         </div>
-    </section>
-
-    
-    <section id="contact" class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Entre em Contato</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
-                <p class="text-gray-600">Vamos conversar !</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="fade-in">
-                    <h3 class="text-2xl font-semibold mb-6">Informações de Contato</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-envelope text-blue-600 text-xl w-8"></i>
-                            <span class="text-gray-600">felipeti1989@gmail.com</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-phone text-blue-600 text-xl w-8"></i>
-                            <span class="text-gray-600">+55 (41) 99858-7244</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-map-marker-alt text-blue-600 text-xl w-8"></i>
-                            <span class="text-gray-600">Curitiba, PR - Brasil</span>
-                        </div>
-                    </div>
-                    <div class="mt-8">
-                        <h4 class="text-lg font-semibold mb-4">Redes Sociais</h4>
-                        <div class="flex space-x-4">
-
-                            <a href="https://www.linkedin.com/in/felipe-ribeiro-6a737129b/" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                              <i class="fab fa-linkedin"></i>
-                             </a>
-                             <a href="https://github.com/Tody1989" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors">
-                             <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+        <div class="mt-8">
+          <h4 class="text-lg font-semibold mb-4">Redes Sociais</h4>
+          <div class="flex space-x-4">
+            <a href="https://www.linkedin.com/in/felipe-ribeiro-6a737129b/" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/Tody1989" target="_blank" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
         </div>
-    </section>
+      </div>
+     
+    </div>
+  </div>
+</section>
 
+
+<footer class="bg-gray-800 text-white py-8">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <p>&copy; 2025 Felipe Ribeiro. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+
+<script>
     
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p>&copy; 2025 Felipe Ribeiro. Todos os direitos reservados.</p>
-        </div>
-    </footer>
 
-    <script>
-        
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNav = document.getElementById('mobile-nav');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenu.addEventListener('click', () => {
+  document.getElementById('mobile-nav').classList.toggle('-translate-x-full');
+});
 
-        mobileMenu.addEventListener('click', () => {
-            mobileNav.classList.toggle('-translate-x-full');
-        });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.add('-translate-x-full');
-            });
-        });
+const typingText = document.getElementById('typing-text');
+const texts = ['Seja Bem Vindo !'];
+let textIndex = 0, charIndex = 0, isDeleting = false;
+function typeWriter() {
+  const currentText = texts[textIndex];
+  typingText.textContent = isDeleting ? currentText.substring(0,charIndex--) : currentText.substring(0,charIndex++);
+  if(!isDeleting && charIndex===currentText.length){ setTimeout(()=>isDeleting=true,2000); }
+  else if(isDeleting && charIndex===0){ isDeleting=false; textIndex=(textIndex+1)%texts.length; }
+  setTimeout(typeWriter,isDeleting?50:100);
+}
+typeWriter();
 
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
 
-        
-        const typingText = document.getElementById('typing-text');
-        const texts = ['Seja Bem Vindo !'];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+const observerOptions = { threshold:0.1, rootMargin:'0px 0px -50px 0px' };
+const observer = new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('visible'); } }); },observerOptions);
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
-        function typeWriter() {
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                typingText.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
+
+const skillObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.skill-bar').forEach(bar=>{
+        setTimeout(()=>bar.style.width=bar.getAttribute('data-width'),500);
+      });
+    }
+  });
+},{threshold:0.1});
+const skillsSection = document.getElementById('skills');
+if(skillsSection) skillObserver.observe(skillsSection);
+
+
+const btcIcon = document.getElementById('btc-icon');
+const btcPrice = document.getElementById('btc-price');
+async function obterBitcoin(){
+  try{
+    const resposta = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl');
+    const dados = await resposta.json();
+    const preco = dados.bitcoin.brl;
+    setTimeout(()=>btcPrice.textContent=`R$ ${preco.toLocaleString('pt-BR')}`,1500);
+  }catch(e){ setTimeout(()=>btcPrice.textContent='Erro ao carregar',1500);}
+}
+btcIcon.addEventListener('click',()=>{
+  if(btcPrice.style.display==='none'||btcPrice.style.display===''){ btcPrice.style.display='block'; btcPrice.textContent='Cotação atual ...'; obterBitcoin(); }
+  else btcPrice.style.display='none';
+});
+
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let score = 0;
+let timeLeft = 30;
+let gameOver = false;
+let particles = [];
+
+const bgMusic = new Audio('Som.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
+
+const endMusic = new Audio('Fim.mp3');
+endMusic.volume = 0.5;
+
+const popSound = new Audio('Somtiro.mp3');
+
+let musicStarted = false;
+let countdown;
+
+
+const targetImg = new Image();
+targetImg.src = 'alvo1.png'; 
+
+
+class Target {
+    constructor(x, y, r = 25){
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.dx = (Math.random() - 0.5) * 2;
+        this.dy = (Math.random() - 0.5) * 2;
+    }
+    draw(){
+        ctx.drawImage(targetImg, this.x - this.r, this.y - this.r, this.r*2, this.r*2);
+    }
+    move(){
+        this.x += this.dx;
+        this.y += this.dy;
+        if(this.x - this.r < 0 || this.x + this.r > canvas.width) this.dx *= -1;
+        if(this.y - this.r < 0 || this.y + this.r > canvas.height) this.dy *= -1;
+    }
+    isHit(mx,my){
+        const dx = mx - this.x;
+        const dy = my - this.y;
+        return Math.sqrt(dx*dx + dy*dy) <= this.r;
+    }
+}
+
+const targets = [
+    new Target(150,150),
+    new Target(400,300),
+    new Target(650,200)
+];
+
+
+function restartGame(){
+    score = 0;
+    timeLeft = 30;
+    gameOver = false;
+    particles = [];
+    targets.forEach(t=>{
+        t.x = Math.random()*canvas.width;
+        t.y = Math.random()*canvas.height;
+    });
+    bgMusic.currentTime = 0;
+    bgMusic.play();
+    endMusic.pause();
+    musicStarted = true;
+
+    clearInterval(countdown);
+    countdown = setInterval(()=>{
+        if(timeLeft > 0){
+            timeLeft--;
+        } else if(!gameOver){
+            gameOver = true;
+            bgMusic.pause();
+            endMusic.play();
+        }
+    },1000);
+}
+
+
+function drawButton(x, y, width, height, text){
+    const radius = 15;
+    ctx.fillStyle = '#007BFF';
+    ctx.strokeStyle = '#0056b3';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = 'white';
+    ctx.font = '25px Arial';
+    const textWidth = ctx.measureText(text).width;
+    ctx.fillText(text, x + (width - textWidth)/2, y + height/2 + 9);
+}
+
+
+canvas.addEventListener('click', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+
+    if(gameOver){
+        if(mx >= canvas.width/2 - 100 && mx <= canvas.width/2 + 100 &&
+           my >= canvas.height/2 + 100 && my <= canvas.height/2 + 150){
+            restartGame();
+        }
+        return;
+    }
+
+    if(!musicStarted){
+        bgMusic.play().catch(err => console.log('Ative o som do navegador!'));
+        musicStarted = true;
+
+        countdown = setInterval(()=>{
+            if(timeLeft > 0){
+                timeLeft--;
+            } else if(!gameOver){
+                gameOver = true;
+                bgMusic.pause();
+                endMusic.play();
+            }
+        },1000);
+    }
+
+    targets.forEach(t => {
+        if(t.isHit(mx,my)){
+            score += 1;
+            popSound.currentTime = 0;
+            popSound.play();
+
+            for(let i=0;i<15;i++){
+                particles.push({
+                    x: t.x,
+                    y: t.y,
+                    dx: (Math.random()-0.5)*5,
+                    dy: (Math.random()-0.5)*5,
+                    alpha: 1,
+                    size: Math.random()*4+2,
+                    color: ['#FFD700','#FF4500','#FF6347','#FFA500'][Math.floor(Math.random()*4)]
+                });
             }
 
-            if (!isDeleting && charIndex === currentText.length) {
-                setTimeout(() => isDeleting = true, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-            }
-
-            setTimeout(typeWriter, isDeleting ? 50 : 100);
+            t.x = Math.random()*canvas.width;
+            t.y = Math.random()*canvas.height;
         }
+    });
+});
 
-        typeWriter();
 
-        
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+function drawGame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+    if(!gameOver){
+        targets.forEach(t=>{
+            t.move();
+            t.draw();
         });
+    }
 
-        
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-bar');
-                    skillBars.forEach(bar => {
-                        const width = bar.getAttribute('data-width');
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 500);
-                    });
-                }
-            });
-        }, observerOptions);
+    
+    particles.forEach((p,i)=>{
+        ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
 
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) {
-            skillObserver.observe(skillsSection);
-        }
+        p.x += p.dx;
+        p.y += p.dy;
+        p.alpha -= 0.02;
 
-       
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Obrigado pela mensagem! Este é um portfólio demo - o formulário não envia emails reais.');
-        });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9704a40e9580f219',t:'MTc1NTM4NjIwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+        if(p.alpha <= 0) particles.splice(i,1);
+    });
+
+  
+    ctx.fillStyle = 'white';
+    ctx.font = '20px Arial';
+    ctx.fillText('Pontos: '+score, 10, 30);
+    ctx.fillText(`Tempo: ${timeLeft}s`, 10, 60);
+
+    
+    if(gameOver){
+        ctx.fillStyle = 'black';
+        ctx.font = '60px Arial';
+        let text1 = 'Fim de jogo!';
+        let text1Width = ctx.measureText(text1).width;
+        ctx.fillText(text1,(canvas.width - text1Width)/2,canvas.height/2 - 20);
+
+        ctx.font = '50px Arial';
+        let text2 = `Sua pontuação: ${score}`;
+        let text2Width = ctx.measureText(text2).width;
+        ctx.fillText(text2,(canvas.width - text2Width)/2,canvas.height/2 + 50);
+
+        drawButton(canvas.width/2 - 100, canvas.height/2 + 100, 200, 50, 'Jogar novamente');
+    }
+
+    requestAnimationFrame(drawGame);
+}
+
+
+function hexToRgb(hex){
+    const bigint = parseInt(hex.replace('#',''),16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `${r},${g},${b}`;
+}
+
+drawGame();
+
+
+
+
+
+
+</script>
+
+</body>
 </html>
